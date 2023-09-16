@@ -11,7 +11,7 @@ async function bootstrap() {
     options: {
       url: process.env.URL,
       package: RESTAURANT_PACKAGE_NAME,
-      protoPath: join(__dirname, '../HUMF_Proto/restaurant.proto'),
+      protoPath: join(__dirname, '../proto/restaurant.proto'),
     }
   });
   app.listen()
