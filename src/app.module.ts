@@ -2,6 +2,7 @@ require('dotenv').config()
 import { Module } from '@nestjs/common';
 import { RestaurantModule } from './restaurant/restaurant.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Restaurant } from './restaurant/model/Restaurant';
 
 @Module({
   imports: [RestaurantModule, TypeOrmModule.forRoot({
@@ -11,7 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     username: process.env.DB_USERNAME,
     password: process.env.DB_HOST_PASSWORD,
     database: "softArch",
-    entities: [],
+    entities: [Restaurant],
     synchronize: true,
   })],
 })
