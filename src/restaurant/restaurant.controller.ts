@@ -1,10 +1,11 @@
 import { Controller } from '@nestjs/common';
 import { RestaurantService } from './restaurant.service';
 import {
-  Restaurant,
+  CreateRestaurantDto,
   RestaurantId,
   RestaurantServiceController, 
-  RestaurantServiceControllerMethods 
+  RestaurantServiceControllerMethods, 
+  UpdateRestaurantDto
 } from '../../HUMF_Proto/build/proto/restaurant'
 ;
 
@@ -21,12 +22,12 @@ export class RestaurantController implements RestaurantServiceController{
     return this.restaurantService.getRestaurant(restaurantId)
   }
 
-  addRestaurant(restaurant: Restaurant) {
-    return this.restaurantService.addRestaurant(restaurant)
+  addRestaurant(createRestaurantDto: CreateRestaurantDto) {
+    return this.restaurantService.addRestaurant(createRestaurantDto)
   }
 
-  updateRestaurant(restaurant: Restaurant) {
-    return this.restaurantService.updateRestaurant(restaurant)
+  updateRestaurant(updateRestaurantDto: UpdateRestaurantDto) {
+    return this.restaurantService.updateRestaurant(updateRestaurantDto)
   }
 
   deleteRestaurant(restaurantId: RestaurantId) {

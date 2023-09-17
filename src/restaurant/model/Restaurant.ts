@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @Entity({name : "restaurants"})
-export class Restaurant {
+export class RestaurantEntity {
     @PrimaryGeneratedColumn({
         type: 'bigint',
         name: 'restaurant_id'
@@ -16,12 +16,12 @@ export class Restaurant {
     @Column({
         nullable: false,
     })
-    open_time: string;
+    openTime: string;
 
     @Column({
         nullable: false,
     })
-    close_time: string;
+    closeTime: string;
 
     @Column()
     address: string;
