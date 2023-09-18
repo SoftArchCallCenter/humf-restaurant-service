@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { 
   CreateRestaurantDto, 
   Restaurant, 
-  RestaurantId, 
-  RestaurantList, 
+  RestaurantId,  
   UpdateRestaurantDto 
 } from '../../HUMF_Proto/build/proto/restaurant'
 import { InjectRepository } from '@nestjs/typeorm';
@@ -23,11 +22,7 @@ export class RestaurantService {
   }
 
   async getRestaurant(restaurantId: RestaurantId) {
-
-    const resId = restaurantId.id.toString()
-    const result = await this.restaurantRepository.findOneBy({id : parseInt(resId)})
-
-    return result
+    return this.restaurantRepository.findOneBy({id : restaurantId.id})
   }
 
   addRestaurant (createRestaurantDto: CreateRestaurantDto)  {
