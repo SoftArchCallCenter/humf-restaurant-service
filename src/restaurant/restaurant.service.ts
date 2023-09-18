@@ -37,25 +37,15 @@ export class RestaurantService {
     return this.restaurantRepository.save(newRestaurant)
   }
 
-  updateRestaurant(updateRestaurantDto: UpdateRestaurantDto) {
-    const result : Restaurant = {
-      id: 1,
-      name: "string",
-      openTime: "string",
-      closeTime: "string",
-      address: "string",
-    }
-    return result
+  async updateRestaurant(updateRestaurantDto: UpdateRestaurantDto) {
+    const { id , ...updateField } = updateRestaurantDto
+    const updateRestaurant = await this.restaurantRepository.update({ id },{ ...updateField })
+    console.log(updateRestaurant)
+    return this.restaurantRepository.findOneBy({ id })
   }
 
   deleteRestaurant(restaurantId: RestaurantId) {
-    const result : Restaurant = {
-      id: 1,
-      name: "string",
-      openTime: "string",
-      closeTime: "string",
-      address: "string",
-    }
-    return result
+    this.restaurantRepository.delete({id : restaurantId.id})
+    return {}
   }
 }

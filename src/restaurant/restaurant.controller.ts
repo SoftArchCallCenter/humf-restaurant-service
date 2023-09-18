@@ -3,15 +3,15 @@ import { RestaurantService } from './restaurant.service';
 import {
   CreateRestaurantDto,
   RestaurantId,
-  RestaurantGrpcServiceController, 
-  RestaurantGrpcServiceControllerMethods, 
+  RestaurantServiceController, 
+  RestaurantServiceControllerMethods, 
   UpdateRestaurantDto
 } from '../../HUMF_Proto/build/proto/restaurant'
 ;
 
 @Controller()
-@RestaurantGrpcServiceControllerMethods()
-export class RestaurantController implements RestaurantGrpcServiceController{
+@RestaurantServiceControllerMethods()
+export class RestaurantController implements RestaurantServiceController{
   constructor(private readonly restaurantService: RestaurantService) {}
 
   getAllRestaurant() {
