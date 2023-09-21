@@ -2,6 +2,7 @@ import { Controller } from '@nestjs/common';
 import { RestaurantService } from './restaurant.service';
 import {
   CreateRestaurantDto,
+  FilterRestaurantDto,
   RestaurantId,
   RestaurantServiceController, 
   RestaurantServiceControllerMethods, 
@@ -20,6 +21,10 @@ export class RestaurantController implements RestaurantServiceController{
 
   getRestaurant(restaurantId: RestaurantId) {
     return this.restaurantService.getRestaurant(restaurantId)
+  }
+
+  filterRestaurant(filterRestaurantDto: FilterRestaurantDto) {
+    return this.restaurantService.filterRestaurant(filterRestaurantDto)
   }
 
   addRestaurant(createRestaurantDto: CreateRestaurantDto) {

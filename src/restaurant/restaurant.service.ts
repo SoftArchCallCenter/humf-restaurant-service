@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { 
   CreateRestaurantDto, 
-  Restaurant, 
+  FilterRestaurantDto, 
   RestaurantId,  
   UpdateRestaurantDto 
 } from '../../HUMF_Proto/build/proto/restaurant'
@@ -25,6 +25,12 @@ export class RestaurantService {
     return this.restaurantRepository.findOneBy({id : restaurantId.id})
   }
 
+  async filterRestaurant(filterRestaurantDto: FilterRestaurantDto) {
+    //  waiting to implement fileterRestaurant
+    const restaurant = await this.restaurantRepository.find()
+    return {Restaurant : restaurant}
+  }
+
   addRestaurant (createRestaurantDto: CreateRestaurantDto)  {
     const currentDate = new Date()
 
@@ -38,8 +44,12 @@ export class RestaurantService {
   }
 
   async updateRestaurant(updateRestaurantDto: UpdateRestaurantDto) {
+    const updateAt = new Date()
     const { id , ...updateField } = updateRestaurantDto
-    const updateRestaurant = await this.restaurantRepository.update({ id },{ ...updateField })
+    const updateRestaurant = await this.restaurantRepository.update({ id },{
+       ...updateField,
+       updateAt
+      })
     console.log(updateRestaurant)
     return this.restaurantRepository.findOneBy({ id })
   }
