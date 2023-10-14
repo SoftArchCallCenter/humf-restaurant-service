@@ -31,7 +31,7 @@ export class RestaurantService {
     return {Restaurant : restaurant}
   }
 
-  addRestaurant (createRestaurantDto: CreateRestaurantDto)  {
+  async addRestaurant (createRestaurantDto: CreateRestaurantDto)  {
     const currentDate = new Date()
 
     let newRestaurant = this.restaurantRepository.create({
@@ -39,8 +39,9 @@ export class RestaurantService {
       createAt: currentDate,
       updateAt: currentDate,
     })
+    const addedRestaurant = await this.restaurantRepository.save(newRestaurant)
 
-    return this.restaurantRepository.save(newRestaurant)
+    return this.restaurantRepository.findOneBy({ id : addedRestaurant.id })
   }
 
   async updateRestaurant(updateRestaurantDto: UpdateRestaurantDto) {
