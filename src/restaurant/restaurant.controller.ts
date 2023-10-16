@@ -7,7 +7,7 @@ import {
   RestaurantServiceController, 
   RestaurantServiceControllerMethods, 
   UpdateRestaurantDto
-} from '../../HUMF_Proto/build/proto/restaurant'
+} from '../../humf-proto/build/proto/restaurant'
 ;
 
 @Controller()

@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { Transport } from "@nestjs/microservices";
 import { AppModule } from './app.module';
 import { join } from 'path';
-import { RESTAURANT_PACKAGE_NAME } from '../HUMF_Proto/build/proto/restaurant';
+import { RESTAURANT_PACKAGE_NAME } from '../humf-proto/build/proto/restaurant';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
