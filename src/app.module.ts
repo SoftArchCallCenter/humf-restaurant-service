@@ -5,15 +5,18 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { RestaurantEntity } from './restaurant/model/Restaurant';
 
 @Module({
-  imports: [RestaurantModule, TypeOrmModule.forRoot({
-    type: 'mysql',
-    host: process.env.MYSQL_HOST,
-    port: parseInt(process.env.MYSQL_PORT),
-    username: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-    entities: [RestaurantEntity],
-    synchronize: true,
+  imports: [RestaurantModule, 
+    TypeOrmModule.forRootAsync({
+      useFactory:async () => ({
+        type: 'mysql',
+        host: process.env.MYSQL_HOST,
+        port: parseInt(process.env.MYSQL_PORT),
+        username: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        entities: [RestaurantEntity],
+        synchronize: process.env.NODE_ENV === 'development',
+      })
   })],
 })
 export class AppModule {}
