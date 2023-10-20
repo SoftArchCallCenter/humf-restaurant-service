@@ -6,7 +6,7 @@ import {
   UpdateRestaurantDto 
 } from '../../humf-proto/build/proto/restaurant'
 import { InjectRepository } from '@nestjs/typeorm';
-import { RestaurantEntity } from './model/Restaurant';
+import { RestaurantEntity } from './entities/restaurant.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

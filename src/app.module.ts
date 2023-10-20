@@ -2,10 +2,11 @@ require('dotenv').config()
 import { Module } from '@nestjs/common';
 import { RestaurantModule } from './restaurant/restaurant.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { RestaurantEntity } from './restaurant/model/Restaurant';
+import { RestaurantEntity } from './restaurant/entities/restaurant.entity';
+import { MenuModule } from './menu/menu.module';
 
 @Module({
-  imports: [RestaurantModule, 
+  imports: [RestaurantModule, MenuModule, 
     TypeOrmModule.forRootAsync({
       useFactory:async () => ({
         type: 'mysql',
