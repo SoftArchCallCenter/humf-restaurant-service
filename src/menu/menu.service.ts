@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMenuDto } from './dto/create-menu.dto';
-import { UpdateMenuDto } from './dto/update-menu.dto';
-import { MenuId, RestaurantId } from 'humf-proto/build/proto/menu';
+// import { CreateMenuDto } from './dto/create-menu.dto';
+// import { UpdateMenuDto } from './dto/update-menu.dto';
+import { MenuId, RestaurantId, CreateMenuDto, UpdateMenuDto } from 'humf-proto/build/proto/menu';
 import { MenuEntity } from './entities/menu.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -21,6 +21,11 @@ export class MenuService {
 
   async getMenu(menuId: MenuId) {
     return this.menuRepository.findOneBy({id : menuId.id})
+  }
+
+  async getAllMenuByRestaurant(resId: RestaurantId){
+    const Menu = await this.menuRepository.find({})
+    return {Menu}
   }
 
   async createMenu (createMenuDto: CreateMenuDto)  {
@@ -43,7 +48,7 @@ export class MenuService {
        ...updateField,
        updateAt
       })
-    console.log(updateMenu)
+    // console.log(updateMenu)
     return this.menuRepository.findOneBy({ id })
   }
 

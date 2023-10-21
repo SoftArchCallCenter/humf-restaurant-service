@@ -1,12 +1,15 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { MenuService } from './menu.service';
-import { CreateMenuDto } from './dto/create-menu.dto';
-import { UpdateMenuDto } from './dto/update-menu.dto';
+// import { CreateMenuDto } from './dto/create-menu.dto';
+// import { UpdateMenuDto } from './dto/update-menu.dto';
 import {
   MenuId,
   MenuServiceController, 
-  MenuServiceControllerMethods, 
+  MenuServiceControllerMethods,
+  CreateMenuDto,
+  UpdateMenuDto,
+  RestaurantId
 } from '../../humf-proto/build/proto/menu'
 ;
 
@@ -21,6 +24,10 @@ export class MenuController implements MenuServiceController{
 
   getMenu(menuId: MenuId) {
     return this.menuService.getMenu(menuId)
+  }
+
+  getAllMenuByRestaurant(resId : RestaurantId) {
+    return this.menuService.getAllMenuByRestaurant(resId)
   }
 
   createMenu(createMenuDto: CreateMenuDto) {
