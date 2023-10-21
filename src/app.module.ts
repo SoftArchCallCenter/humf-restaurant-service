@@ -4,6 +4,7 @@ import { RestaurantModule } from './restaurant/restaurant.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RestaurantEntity } from './restaurant/entities/restaurant.entity';
 import { MenuModule } from './menu/menu.module';
+import { MenuEntity } from './menu/entities/menu.entity';
 
 @Module({
   imports: [RestaurantModule, MenuModule, 
@@ -15,7 +16,7 @@ import { MenuModule } from './menu/menu.module';
         username: process.env.MYSQL_USER,
         password: process.env.MYSQL_PASSWORD,
         database: process.env.MYSQL_DATABASE,
-        entities: [RestaurantEntity],
+        entities: [RestaurantEntity, MenuEntity],
         synchronize: process.env.NODE_ENV === 'development',
       })
   })],
