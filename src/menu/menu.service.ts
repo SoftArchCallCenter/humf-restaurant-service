@@ -1,11 +1,8 @@
 import { Injectable } from '@nestjs/common';
-// import { CreateMenuDto } from './dto/create-menu.dto';
-// import { UpdateMenuDto } from './dto/update-menu.dto';
 import { MenuId, RestaurantId, CreateMenuDto, UpdateMenuDto } from 'humf-proto/build/proto/menu';
 import { MenuEntity } from './entities/menu.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-
 
 @Injectable()
 export class MenuService {

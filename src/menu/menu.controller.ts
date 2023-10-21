@@ -1,8 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { MenuService } from './menu.service';
-// import { CreateMenuDto } from './dto/create-menu.dto';
-// import { UpdateMenuDto } from './dto/update-menu.dto';
 import {
   MenuId,
   MenuServiceController, 
