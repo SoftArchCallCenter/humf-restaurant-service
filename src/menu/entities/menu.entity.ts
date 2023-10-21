@@ -24,6 +24,11 @@ export class MenuEntity {
     @Column({
         nullable: false,
     })
+    resId: number;
+
+    @Column({
+        nullable: false,
+    })
     createAt: Date;
 
     @Column({

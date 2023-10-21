@@ -21,8 +21,12 @@ export class MenuService {
   }
 
   async getAllMenuByRestaurant(resId: RestaurantId){
-    const Menu = await this.menuRepository.find({})
-    return {Menu}
+    try{
+      const menu = await this.menuRepository.findBy({resId : resId.id})
+      return {Menu: menu}
+    } catch(err){
+      console.log(err)
+    }
   }
 
   async createMenu (createMenuDto: CreateMenuDto)  {
