@@ -1,35 +1,42 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { MenuService } from './menu.service';
-import { CreateMenuDto } from './dto/create-menu.dto';
-import { UpdateMenuDto } from './dto/update-menu.dto';
+import {
+  MenuId,
+  MenuServiceController, 
+  MenuServiceControllerMethods,
+  CreateMenuDto,
+  UpdateMenuDto,
+  RestaurantId
+} from '../../humf-proto/build/proto/menu'
+;
 
 @Controller()
-export class MenuController {
+@MenuServiceControllerMethods()
+export class MenuController implements MenuServiceController{
   constructor(private readonly menuService: MenuService) {}
 
-  @MessagePattern('createMenu')
-  create(@Payload() createMenuDto: CreateMenuDto) {
-    return this.menuService.create(createMenuDto);
+  getAllMenu() {
+    return this.menuService.getAllMenu()
   }
 
-  @MessagePattern('findAllMenu')
-  findAll() {
-    return this.menuService.findAll();
+  getMenu(menuId: MenuId) {
+    return this.menuService.getMenu(menuId)
   }
 
-  @MessagePattern('findOneMenu')
-  findOne(@Payload() id: number) {
-    return this.menuService.findOne(id);
+  getAllMenuByRestaurant(resId : RestaurantId) {
+    return this.menuService.getAllMenuByRestaurant(resId)
   }
 
-  @MessagePattern('updateMenu')
-  update(@Payload() updateMenuDto: UpdateMenuDto) {
-    return this.menuService.update(updateMenuDto.id, updateMenuDto);
+  createMenu(createMenuDto: CreateMenuDto) {
+    return this.menuService.createMenu(createMenuDto)
   }
 
-  @MessagePattern('removeMenu')
-  remove(@Payload() id: number) {
-    return this.menuService.remove(id);
+  updateMenu(updateMenuDto: UpdateMenuDto) {
+    return this.menuService.updateMenu(updateMenuDto)
+  }
+
+  deleteMenu(menuId: MenuId) {
+    return this.menuService.deleteMenu(menuId)
   }
 }

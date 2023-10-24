@@ -51,7 +51,7 @@ export class RestaurantService {
        ...updateField,
        updateAt
       })
-    console.log(updateRestaurant)
+    // console.log(updateRestaurant)
     return this.restaurantRepository.findOneBy({ id })
   }
 
