@@ -12,7 +12,10 @@ async function bootstrap() {
     options: {
       url: process.env.URL,
       package: [RESTAURANT_PACKAGE_NAME,MENU_PACKAGE_NAME],
-      protoPath: join(__dirname, '../proto/restaurant.proto'),
+      protoPath: [
+        join(__dirname, '../proto/restaurant.proto'),
+        join(__dirname, '../proto/menu.proto'),
+      ],
     }
   });
   app.listen()

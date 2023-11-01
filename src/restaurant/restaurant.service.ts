@@ -3,7 +3,8 @@ import {
   CreateRestaurantDto, 
   FilterRestaurantDto, 
   RestaurantId,  
-  UpdateRestaurantDto 
+  UpdateRestaurantDto, 
+  UserIdDto
 } from '../../humf-proto/build/proto/restaurant'
 import { InjectRepository } from '@nestjs/typeorm';
 import { RestaurantEntity } from './entities/restaurant.entity';
@@ -23,6 +24,10 @@ export class RestaurantService {
 
   async getRestaurant(restaurantId: RestaurantId) {
     return this.restaurantRepository.findOneBy({id : restaurantId.id})
+  }
+
+  getRestaurantByUserId(userId: UserIdDto) {
+    return this.restaurantRepository.findOneBy({userId : userId.id})
   }
 
   async filterRestaurant(filterRestaurantDto: FilterRestaurantDto) {

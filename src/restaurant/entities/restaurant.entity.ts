@@ -11,6 +11,11 @@ export class RestaurantEntity {
     @Column({
         nullable: false,
     })
+    userId: number;
+
+    @Column({
+        nullable: false,
+    })
     name: string;
 
     @Column({

@@ -6,7 +6,8 @@ import {
   RestaurantId,
   RestaurantServiceController, 
   RestaurantServiceControllerMethods, 
-  UpdateRestaurantDto
+  UpdateRestaurantDto,
+  UserIdDto
 } from '../../humf-proto/build/proto/restaurant'
 ;
 
@@ -21,6 +22,10 @@ export class RestaurantController implements RestaurantServiceController{
 
   getRestaurant(restaurantId: RestaurantId) {
     return this.restaurantService.getRestaurant(restaurantId)
+  }
+
+  getRestaurantByUserId(userId: UserIdDto) {
+    return this.restaurantService.getRestaurantByUserId(userId)
   }
 
   filterRestaurant(filterRestaurantDto: FilterRestaurantDto) {
