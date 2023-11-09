@@ -9,12 +9,14 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { RestaurantEntity } from './entities/restaurant.entity';
 import { Repository } from 'typeorm';
+import { MenuEntity } from 'src/menu/entities/menu.entity';
 
 @Injectable()
 export class RestaurantService {
 
   constructor(
     @InjectRepository(RestaurantEntity) private restaurantRepository: Repository<RestaurantEntity>,
+    @InjectRepository(MenuEntity) private menuRepository: Repository<MenuEntity>,
   ) {}
 
   async getAllRestaurant(){
@@ -62,6 +64,7 @@ export class RestaurantService {
 
   deleteRestaurant(restaurantId: RestaurantId) {
     this.restaurantRepository.delete({id : restaurantId.id})
+    this.menuRepository.delete({resId: restaurantId.id})
     return {}
   }
 }
