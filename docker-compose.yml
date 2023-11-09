@@ -2,12 +2,29 @@ version: '3.8'
 
 services:
   mysql:
-    image: mysql/mysql-server:8.0
-    container_name: mysql
+    image: mysql:8.0
+    container_name: mysql-restaurant-service
     env_file:
       - .env
     ports:
-      - 12345:3306
+      - 3307:3306
+  restaurant-service:
+    build: ./
+    container_name: restaurant-service
+    env_file:
+      - .env
+    ports:
+      - ${RESTAURANT_SERVICE_PORT}:${RESTAURANT_SERVICE_PORT}
+    depends_on:
+      - mysql
+    volumes:
+      - ./src:/app/src
+    command: npm run start:dev
+    networks:
+      - default
+      - humf-service-network
+networks:
+  humf-service-network:
 #     volumes:
 #       - mysql_data:/var/lib/mysql
 
