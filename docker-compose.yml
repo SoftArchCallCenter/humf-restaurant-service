@@ -6,11 +6,18 @@ services:
     container_name: mysql-restaurant-service
     env_file:
       - .env
-    # ports:
-    #   - 3307:3306
+    ports:
+      - ${RESTAURANT_SERVICE_MYSQL_PORT}:${RESTAURANT_SERVICE_MYSQL_PORT}
+    expose:
+      - 3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - humf-service-network
 
   restaurant-service:
     build: ./
+    image: restaurant-service:1.0
     container_name: restaurant-service
     env_file:
       - .env
@@ -18,18 +25,16 @@ services:
       - ${RESTAURANT_SERVICE_PORT}:${RESTAURANT_SERVICE_PORT}
     depends_on:
       - mysql
-    volumes:
-      - ./src:/app/src
     command: npm run start:dev
     networks:
-      - default
       - humf-service-network
 
 networks:
   humf-service-network:
-    name: humf-restaurant-service-network
-#     volumes:
-#       - mysql_data:/var/lib/mysql
+    name: humf-service-network
+    external: false
 
-# volumes:
-#   mysql_data:
+volumes:
+  mysql_data:
+    name: mysql_data
+    external: false
