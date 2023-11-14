@@ -27,7 +27,8 @@ services:
 
 networks:
   humf-service-network:
-    name: humf-restaurant-service-network
+    name: humf-service-network
+    external: true
 #     volumes:
 #       - mysql_data:/var/lib/mysql
 
